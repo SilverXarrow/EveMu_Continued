@@ -173,6 +173,8 @@
 #include "system/sov/SovereigntyMgrService.h"
 #include "system/sov/SovereigntyDataMgr.h"
 #include "system/WormholeSvc.h"
+// npc managers
+#include "system/npc/NpcPlayerSimulation.h"
 // cosmic managers
 #include "system/cosmicMgrs/AnomalyMgr.h"
 #include "system/cosmicMgrs/CivilianMgr.h"
