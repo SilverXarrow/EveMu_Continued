@@ -1,0 +1,11 @@
+
+
+<elements>
+  <elementDef name="Notify_OnOwnOrderChanged">
+    <tupleInline>
+      <raw name="order" />
+      <string name="reason" /><!-- Add, Expiry, Modify -->
+      <bool name="isCorp" />
+    </tupleInline>
+  </elementDef>
+</elements>

@@ -1,0 +1,352 @@
+
+<elements>
+
+  <elementDef name="FleetBindRSP">
+    <objectInline>
+      <stringInline value="util.Moniker" />
+      <tupleInline>
+        <stringInline value="fleetObjectHandler" />
+        <int name="nodeID" />
+        <int name="fleetID" />
+        <int name="unknown" none_marker="0" />
+      </tupleInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="SendBroadCastCall">
+    <tupleInline>
+        <string name="msg" />
+        <int name="group"  none_marker="0"/>
+        <int name="itemID" none_marker="0"/>
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="MemberChangedRSP">
+    <tupleInline>
+        <int name="charID" />
+        <int name="fleetID" />
+        <int name="oldWingID" />
+        <int name="oldSquadID" />
+        <int name="oldRole" />
+        <int name="oldJob" />
+        <int name="oldBooster" />
+        <int name="newWingID" />
+        <int name="newSquadID" />
+        <int name="newRole" />
+        <int name="newJob" />
+        <int name="newBooster" />
+        <bool name="isOnlyMember" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="ActiveStatusRSP">
+    <objectInline>
+      <stringInline value="util.KeyVal" />
+        <dictInline>
+        <dictInlineEntry key="fleet">
+          <int name="fleetCount" />
+        </dictInlineEntry>
+        <dictInlineEntry key="wings">
+          <dict name="wings" />     <!-- PyDict of wingID/member count -->
+        </dictInlineEntry>
+        <dictInlineEntry key="squads">
+          <dict name="squads" />    <!-- PyDict of squadID/member count -->
+        </dictInlineEntry>
+      </dictInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="GetInitStateRSP">
+    <objectInline>
+      <stringInline value="util.KeyVal" />
+      <dictInline>
+        <dictInlineEntry key="isExcludedFromMuting">
+          <dict name="isExcludedFromMuting" />      <!-- dict of channelID/charID ?  -->
+        </dictInlineEntry>
+        <dictInlineEntry key="isMutedByLeader">
+          <dict name="isMutedByLeader" />     <!-- dict of channelID/charID ?  -->
+        </dictInlineEntry>
+        <dictInlineEntry key="isLootLogging">
+          <bool name="isLootLogging" />
+        </dictInlineEntry>
+        <dictInlineEntry key="motd">
+          <string name="motd" />
+        </dictInlineEntry>
+        <dictInlineEntry key="fleetID">
+          <tupleInline>
+            <int name="fleetID" />
+          </tupleInline>
+        </dictInlineEntry>
+        <dictInlineEntry key="name">
+          <string name="name" />
+        </dictInlineEntry>
+        <dictInlineEntry key="options">
+          <objectInline>
+            <stringInline value="util.KeyVal" />
+            <dictInline>
+              <dictInlineEntry key="isFreeMove">
+                <bool name="isFreeMove" />
+              </dictInlineEntry>
+              <dictInlineEntry key="isRegistered">
+                <bool name="isRegistered" />
+              </dictInlineEntry>
+              <dictInlineEntry key="isVoiceEnabled">
+                <bool name="isVoiceEnabled" />
+              </dictInlineEntry>
+            </dictInline>
+          </objectInline>
+        </dictInlineEntry>
+        <dictInlineEntry key="members">
+          <dict name="members" />   <!-- MemberRSP goes here inside a PyDict -->
+        </dictInlineEntry>
+        <dictInlineEntry key="wings">
+          <dict name="wings" />     <!-- WingRSP goes here inside a PyDict-->
+        </dictInlineEntry>
+      </dictInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="MemberRSP">
+    <objectInline>
+      <stringInline value="util.KeyVal" />
+      <dictInline>
+        <dictInlineEntry key="wingID">
+          <int name="wingID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="squadID">
+          <int name="squadID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="roleBooster">
+          <int name="roleBooster" />
+        </dictInlineEntry>
+        <dictInlineEntry key="timestamp">
+          <long name="timestamp" />
+        </dictInlineEntry>
+        <dictInlineEntry key="job">
+          <int name="job" />
+        </dictInlineEntry>
+        <dictInlineEntry key="role">
+          <int name="role" />
+        </dictInlineEntry>
+        <dictInlineEntry key="clientID">
+          <long name="clientID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="shipTypeID">
+          <int name="shipTypeID"  none_marker="0"/>
+        </dictInlineEntry>
+        <dictInlineEntry key="solarSystemID">
+          <int name="solarSystemID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="charID">
+          <int name="charID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="skills">
+          <listInline>
+            <int name="skillLeadership" />
+            <int name="skillWingCommand" />
+            <int name="skillFleetCommand" />
+          </listInline>
+        </dictInlineEntry>
+      </dictInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="WingRSP">
+    <objectInline>
+      <stringInline value="util.KeyVal" />
+      <dictInline>
+        <dictInlineEntry key="wingID">
+          <int name="wingID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="name">
+          <string name="name" />
+        </dictInlineEntry>
+        <dictInlineEntry key="squads">
+          <dict name="squads" />   <!-- SquadRSP goes here inside a PyDict -->
+        </dictInlineEntry>
+      </dictInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="SquadRSP">
+    <objectInline>
+      <stringInline value="util.KeyVal" />
+      <dictInline>
+        <dictInlineEntry key="squadID">
+          <int name="squadID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="name">
+          <string name="name" />
+        </dictInlineEntry>
+      </dictInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="JoinFleetRSP">
+    <objectInline>
+      <stringInline value="util.KeyVal" />
+      <dictInline>
+        <dictInlineEntry key="wingID">
+          <int name="wingID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="squadID">
+          <int name="squadID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="job">
+          <int name="job" />
+        </dictInlineEntry>
+        <dictInlineEntry key="role">
+          <int name="role" />
+        </dictInlineEntry>
+        <dictInlineEntry key="roleBooster">
+          <int name="roleBooster" />
+        </dictInlineEntry>
+        <dictInlineEntry key="timestamp">
+          <long name="timestamp" />
+        </dictInlineEntry>
+        <dictInlineEntry key="clientID">
+          <long name="clientID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="shipTypeID">
+          <int name="shipTypeID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="solarSystemID">
+          <int name="solarSystemID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="charID">
+          <int name="charID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="skills">
+          <listInline>
+            <int name="skillLeadership" />
+            <int name="skillWingCommand" />
+            <int name="skillFleetCommand" />
+          </listInline>
+        </dictInlineEntry>
+      </dictInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="FleetAdvertCall">
+    <tupleInline>
+      <objectInline>
+      <stringInline value="util.KeyVal" />
+        <dictInline>
+          <dictInlineEntry key="fleetName">
+            <raw name="fleetName" />
+          </dictInlineEntry>
+          <dictInlineEntry key="description">
+            <raw name="description" />
+          </dictInlineEntry>
+          <dictInlineEntry key="hideInfo">
+            <bool name="hideInfo" />
+          </dictInlineEntry>
+          <dictInlineEntry key="joinNeedsApproval">
+            <bool name="joinNeedsApproval" />
+          </dictInlineEntry>
+          <dictInlineEntry key="inviteScope">
+            <int name="inviteScope" />
+          </dictInlineEntry>
+          <dictInlineEntry key="local_minSecurity">
+            <real name="local_minSecurity" none_marker="0"/>
+          </dictInlineEntry>
+          <dictInlineEntry key="local_minStanding">
+            <int name="local_minStanding" none_marker="0"/>
+          </dictInlineEntry>
+          <dictInlineEntry key="local_allowedEntities">
+            <objectEx name="local_allowedEntities" type="PyObjectEx" optional="true" />
+          </dictInlineEntry>
+          <dictInlineEntry key="public_minSecurity">
+            <real name="public_minSecurity" none_marker="0"/>
+          </dictInlineEntry>
+          <dictInlineEntry key="public_minStanding">
+            <int name="public_minStanding" none_marker="0"/>
+          </dictInlineEntry>
+          <dictInlineEntry key="public_allowedEntities">
+            <objectEx name="public_allowedEntities" type="PyObjectEx" optional="true" />
+          </dictInlineEntry>
+        </dictInline>
+      </objectInline>
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="AvalibleFleetsRSP">
+    <objectInline>
+    <stringInline value="util.KeyVal" />
+      <dictInline>
+        <dictInlineEntry key="fleetID">
+          <int name="fleetID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="fleetName">
+          <string name="fleetName" />
+        </dictInlineEntry>
+        <dictInlineEntry key="description">
+          <string name="description" />
+        </dictInlineEntry>
+        <dictInlineEntry key="numMembers">
+          <int name="numMembers" />
+        </dictInlineEntry>
+        <dictInlineEntry key="inviteScope">
+          <int name="inviteScope" />
+        </dictInlineEntry>
+        <dictInlineEntry key="solarSystemID">
+          <int name="solarSystemID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="joinNeedsApproval">
+          <bool name="joinNeedsApproval" />
+        </dictInlineEntry>
+        <dictInlineEntry key="hideInfo">
+          <bool name="hideInfo" />
+        </dictInlineEntry>
+        <dictInlineEntry key="advertTime">
+          <long name="advertTime" />
+        </dictInlineEntry>
+        <dictInlineEntry key="dateCreated">
+          <long name="dateCreated" />
+        </dictInlineEntry>
+        <dictInlineEntry key="local_minSecurity">
+          <real name="local_minSecurity" />
+        </dictInlineEntry>
+        <dictInlineEntry key="local_minStanding">
+          <real name="local_minStanding" />
+        </dictInlineEntry>
+        <dictInlineEntry key="local_allowedEntities">
+          <objectEx name="local_allowedEntities" type="PyObjectEx" optional="true" />
+        </dictInlineEntry>
+        <dictInlineEntry key="public_minSecurity">
+          <real name="public_minSecurity" />
+        </dictInlineEntry>
+        <dictInlineEntry key="public_minStanding">
+          <real name="public_minStanding" />
+        </dictInlineEntry>
+        <dictInlineEntry key="public_allowedEntities">
+          <objectEx name="public_allowedEntities" type="PyObjectEx" optional="true" />
+        </dictInlineEntry>
+        <dictInlineEntry key="leader">
+          <objectInline>
+          <stringInline value="util.KeyVal" />
+            <dictInline>
+              <dictInlineEntry key="corpID">
+                <int name="corpID" />
+              </dictInlineEntry>
+              <dictInlineEntry key="warFactionID">
+                <int name="warFactionID" none_marker="0"/>
+              </dictInlineEntry>
+              <dictInlineEntry key="charID">
+                <int name="charID" />
+              </dictInlineEntry>
+              <dictInlineEntry key="securityStatus">
+                <real name="securityStatus" />
+              </dictInlineEntry>
+              <dictInlineEntry key="allianceID">
+                <int name="allianceID" none_marker="0"/>
+              </dictInlineEntry>
+            </dictInline>
+          </objectInline>
+        </dictInlineEntry>
+      </dictInline>
+    </objectInline>
+  </elementDef>
+
+</elements>
+

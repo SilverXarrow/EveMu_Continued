@@ -1,0 +1,85 @@
+
+<elements>
+
+  <include file="packets/General.h" />
+
+  <elementDef name="OnCharNowInStation">
+    <tupleInline>
+        <tupleInline>
+            <int name="charID" />
+            <int name="corpID" />
+            <int name="allianceID" default="0" none_marker="0" />
+            <int name="warFactionID" default="0" none_marker="0" />
+        </tupleInline>
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="OnCharNoLongerInStation">
+    <tupleInline>
+      <tupleInline>
+        <int name="charID" />
+        <int name="corpID" />
+        <int name="allianceID" default="0" none_marker="0" />
+        <int name="factionID" default="0" none_marker="0" />
+      </tupleInline>
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="OnSkillStartTraining">
+    <tupleInline>
+      <stringInline value="OnSkillStartTraining" />
+      <int name="itemID" />
+      <long name="endOfTraining" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="OnSkillTrainingStopped">
+    <tupleInline>
+      <stringInline value="OnSkillTrainingStopped" />
+      <int name="itemID" />
+      <bool name="silent" /><!-- slient means 'disable neocom blink event' -->
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="OnSkillTrained">
+    <tupleInline>
+      <stringInline value="OnSkillTrained" />
+      <int name="itemID" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="OnMultipleSkillsTrained">
+    <tupleInline>
+      <stringInline value="OnMultipleSkillsTrained" />
+      <list name="skillList" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="OnSkillSwitched">
+    <tupleInline>
+      <stringInline value="OnSkillSwitched" />
+      <int name="oldSkillID" />
+      <int name="newSkillID" />
+      <long name="ETA" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="OnAdminSkillChange">
+    <tupleInline>
+      <stringInline value="OnAdminSkillChange" />
+      <int name="skillItemID" />
+      <int name="skillTypeID" />
+      <long name="newSP" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="SkillQueue_Element">
+    <tupleInline>
+      <int name="typeID" />
+      <int name="level" safe="true" />
+    </tupleInline>
+  </elementDef>
+
+</elements>
+
+

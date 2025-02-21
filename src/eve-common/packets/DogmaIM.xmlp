@@ -1,0 +1,171 @@
+
+
+<elements>
+
+  <elementDef name="DogmaLM_BindArgs">
+    <tupleInline>
+      <int name="locationID" />
+      <int name="groupID" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="Notify_OnTarget">
+    <tupleInline>
+      <!-- setup to go into an OnMultiEvent (notify_type) -->
+      <stringInline value="OnTarget" />
+      <!--
+          One of:
+          add - target added
+          lost - target lost
+          clear - clear all targets
+          otheradd - somebody locked you
+          otherlost - somebody unlocked you
+      -->
+      <string name="mode" />
+      <int name="targetID" />
+      <!-- sent on lost and otherlost, but not processed -->
+      <string name="reason" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="Rsp_Dogma_AddTarget">
+    <tupleInline>
+      <bool name="flag" />
+      <listInt name="targetList" />
+    </tupleInline>
+  </elementDef>
+
+  <!--
+                  [PyTuple 12 items]
+                    [PyString "OnGodmaShipEffect"]
+                    [PyIntegerVar 1005903401223]
+                    [PyInt 101]
+                    [PyIntegerVar 129756561339354992]
+                    [PyInt 1]
+                    [PyInt 1]
+                    [PyList 7 items]
+                      [PyIntegerVar 1005903401223]
+                      [PyIntegerVar 1661059544]
+                      [PyIntegerVar 1005901990608]
+                      [PyIntegerVar 9000000000001190095]
+                      [PyTuple 3 items]
+                        [PyIntegerVar 1005901990608]
+                        [PyInt 32]
+                        [PyInt 209]
+                      [PyList 0 items]
+                      [PyInt 101]
+                    [PyIntegerVar 129756561339354992]
+                    [PyFloat 13110]
+                    [PyInt 1000]
+                    [PyNone]
+                    [PyNone]
+  -->
+  <elementDef name="Notify_OnGodmaShipEffect">
+    <tupleInline>
+      <!-- setup to go into an OnMultiEvent (notify_type) -->
+      <stringInline value="OnGodmaShipEffect" />
+      <int name="itemID" />
+      <int name="effectID" />
+      <long name="timeNow" />
+      <int name="start" />
+      <int name="active" />
+      <raw name="environment" /><!-- GodmaEnvironment goes here-->
+      <long name="startTime" />
+      <real name="duration" />
+      <int name="repeat" /><!-- # times to repeat  make it ammo qty?  live sends 1000 -->
+      <int name="randomSeed" none_marker="0"/><!--  cannot find where this is sent from server.  seed is 42. -->
+      <raw name="error" /><!-- reason module is stopped, i.e. target gone    - GodmaError goes here -->
+      <!-- these next two are actually named args -->
+      <!-- <long name="actualStopTime" /> -->
+      <!-- <raw name="stall" /> -->
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="GodmaEnvironment">
+    <listInline>
+      <int name="selfID" none_marker="0" default="0" />
+      <int name="charID" none_marker="0" default="0" />
+      <int name="shipID" none_marker="0" default="0" />
+      <raw name="target" /> <!-- targetID or PyNone-->
+      <raw name="subLoc" /> <!-- GodmaSubLoc goes here with charge data or PyNone-->
+      <raw name="area" /><!-- ALWAYS a PyList, even empty -->
+      <int name="effectID" none_marker="0" default="0" />
+    </listInline>
+  </elementDef>
+
+  <elementDef name="GodmaSubLoc">
+    <tupleInline>
+      <int name="shipID" />
+      <int name="slotID" />
+      <int name="typeID" />
+    </tupleInline>
+  </elementDef>
+  <!--
+                    [PyTuple 2 items]
+                      [PyString "TargetNoLongerPresentGeneric"]
+                      [PyDict 1 kvp]
+                        [PyString "moduleID"]
+                        [PyInt 209]
+-->
+
+  <elementDef name="GodmaError"><!-- more to this than template has here.  fix later  -->
+    <tupleInline>
+      <string name="ErrorMsg" />
+        <dictInline>
+          <dictInlineEntry key="name">
+            <string name="name" />
+          </dictInlineEntry>
+          <dictInlineEntry key="nameID">
+            <int name="nameID" />
+          </dictInlineEntry>
+        </dictInline>
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="Notify_OnGodmaFlushLocation">
+    <tupleInline>
+      <!-- setup to go into an OnMultiEvent (notify_type) -->
+      <stringInline value="OnGodmaFlushLocation" />
+      <!-- not sure yet -->
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="Notify_OnGodmaFlushLocationProfile">
+    <tupleInline>
+      <!-- setup to go into an OnMultiEvent (notify_type) -->
+      <stringInline value="OnGodmaFlushLocationProfile" />
+      <!-- not sure yet -->
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="Notify_OnMultiEvent">
+    <tupleInline>
+      <list name="events" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="Notify_OnModuleAttributeChange">
+    <tupleInline>
+      <!-- setup to go into an OnMultiEvent (notify_type) -->
+      <stringInline value="OnModuleAttributeChange" />
+      <int name="ownerID" />
+      <raw name="itemKey" />
+      <int name="attributeID" />
+      <long name="time" />
+      <raw name="newValue" />
+      <raw name="oldValue" />
+      <!-- <raw name="scatterAttr" /> -->
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="Notify_OnEffectMessage">
+    <tupleInline>
+      <!-- setup to go into an OnMultiEvent (notify_type) -->
+      <stringInline value="OnEffectMessage" />
+      <!-- messageID: from eveMessages  -->
+      <string name="messageID" />
+      <dict name="arguments" />
+    </tupleInline>
+  </elementDef>
+
+</elements>

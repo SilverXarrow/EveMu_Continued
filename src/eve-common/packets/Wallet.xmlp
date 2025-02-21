@@ -1,0 +1,56 @@
+
+
+<elements>
+
+  <elementDef name="OnAccountChange">
+    <tupleInline>
+      <string name="accountKey" />
+      <int name="ownerid" />
+      <real name="balance" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="OnLPChange">
+    <tupleInline>
+      <int name="corpID" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="OnBillReceived">
+    <tupleInline>
+      <int name="notificationID" /><!-- notificationID in "Unprocessed Notifications" from mail.notifications -->
+      <int name="interest" /><!-- percent in integer -->
+      <int name="fromID" />
+      <long name="transactionDate" />
+      <dictInline>
+        <dictInlineEntry key="debtorID"><!-- charID or corpID of responsible party -->
+            <int name="debtorID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="creditorID"><!-- payable to corpID or ? -->
+            <int name="creditorID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="billTypeID">
+            <int name="billTypeID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="amount">
+            <real name="amount" />
+        </dictInlineEntry>
+        <dictInlineEntry key="externalID2"><!-- this is locationID based on billType -->
+            <int name="externalID2" />
+        </dictInlineEntry>
+        <dictInlineEntry key="externalID"><!-- this is typeID based on billType -->
+            <int name="externalID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="currentDate">
+            <int name="currentDate" />
+        </dictInlineEntry>
+        <dictInlineEntry key="dueDate">
+            <int name="dueDate" />
+        </dictInlineEntry>
+      </dictInline>
+    </tupleInline>
+  </elementDef>
+
+</elements>
+
+

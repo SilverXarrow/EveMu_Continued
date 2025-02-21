@@ -1,0 +1,35 @@
+
+<elements>
+  <elementDef name="Rsp_BookmarkLocation">
+    <tupleInline>
+        <int name="bookmarkID" />
+        <int name="itemID" none_marker="0" />
+        <int name="typeID" />
+        <real name="x" />
+        <real name="y" />
+        <real name="z" />
+        <int name="locationID" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="Rsp_CreateFolder">
+    <objectInline>
+      <stringInline value="util.KeyVal" />
+      <dictInline>
+        <dictInlineEntry key="ownerID">
+          <int name="ownerID" />
+        </dictInlineEntry>
+        <dictInlineEntry key="folderID">
+          <int name="folderID"  none_marker="0"/>
+        </dictInlineEntry>
+        <dictInlineEntry key="folderName">
+          <string name="folderName" />
+        </dictInlineEntry>
+        <dictInlineEntry key="creatorID">
+          <int name="creatorID" />
+        </dictInlineEntry>
+      </dictInline>
+    </objectInline>
+  </elementDef>
+
+</elements>

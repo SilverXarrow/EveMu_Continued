@@ -1,0 +1,137 @@
+
+
+<elements>
+
+  <elementDef name="InvBroker_BindArgs">
+    <tupleInline>
+      <int name="locationID" />
+      <int name="groupID" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="EntityEffectState">
+    <listInline>
+      <!--
+      the first 7 fields are the standard effect `environment`
+      fields indexed by ENV_IDX_*, see OnGodmaShipEffect
+      ENV_IDX_SELF = 0
+      ENV_IDX_CHAR = 1
+      ENV_IDX_SHIP = 2
+      ENV_IDX_TARGET = 3
+      ENV_IDX_OTHER = 4
+      ENV_IDX_AREA = 5
+      ENV_IDX_EFFECT = 6
+      -->
+      <int name="env_itemID" />
+      <int name="env_charID" />
+      <int name="env_shipID" />
+      <int name="env_target" none_marker="0" default="0" />
+      <raw name="env_other" />
+      <raw name="env_area" />
+      <int name="env_effectID" />
+      <!-- not sure if charID, shipID and other is needed anymore. -->
+      <long name="startTime" />
+      <!-- saw 0x7 placeholder -->
+      <int name="duration"/>
+      <!-- saw 0 -->
+      <int name="repeat"/>
+      <!-- randomSeed -->
+      <raw name="randomSeed" />
+    </listInline>
+  </elementDef>
+
+  <elementDef name="Rsp_CommonGetInfo_Entry">
+    <dictInline>
+      <dictInlineEntry key="itemID">
+        <!-- this is different for modules and charges -->
+        <raw name="itemID" />
+      </dictInlineEntry>
+      <dictInlineEntry key="invItem">
+        <!-- this is an ItemRow -->
+        <raw name="invItem" />
+      </dictInlineEntry>
+      <dictInlineEntry key="activeEffects">
+        <!-- this maps effectType to EntityEffectState -->
+        <dictInt name="activeEffects" />
+      </dictInlineEntry>
+      <dictInlineEntry key="attributes">
+        <!-- maps attribute ID to it's value, which may be int or real -->
+        <dictInt name="attributes" />
+      </dictInlineEntry>
+      <dictInlineEntry key="description">
+        <string name="description" />
+      </dictInlineEntry>
+      <dictInlineEntry key="time">
+        <long name="time" />
+      </dictInlineEntry>
+    </dictInline>
+  </elementDef>
+
+  <elementDef name="Rsp_ItemGetInfo">
+    <objectInline>
+      <stringInline value="util.KeyVal" />
+          <element name="entry" type="Rsp_CommonGetInfo_Entry" />
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="Rsp_CommonGetInfo">
+    <objectInline>
+      <stringInline value="util.IndexRowset" />
+        <dictInline>
+          <dictInlineEntry key="header">
+              <listInline>
+                <stringInline value="itemID" />
+                <stringInline value="attributes" />
+                <stringInline value="invItem" />
+                <stringInline value="activeEffects" />
+                <stringInline value="time" />
+              </listInline>
+          </dictInlineEntry>
+          <dictInlineEntry key="RowClass">
+            <tokenInline value="util.Row" />
+          </dictInlineEntry>
+          <dictInlineEntry key="idName">
+              <stringInline value="itemID" />
+          </dictInlineEntry>
+          <dictInlineEntry key="description">
+                <string name="description" />
+          </dictInlineEntry>
+          <dictInlineEntry key="data">
+              <!-- For ShipGetInfo: contains a single Rsp_CommonGetInfo_Entry for the ship -->
+              <!-- For CharGetInfo: contains an Rsp_CommonGetInfo_Entry for the char and each of their skills (and implants?) -->
+              <dictInt name="items" />
+          </dictInlineEntry>
+        </dictInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="NotifyOnItemChange">
+    <tupleInline>
+      <!-- 0: this is an ItemRow -->
+      <raw name="itemRow" />
+      <!-- 1: map from row index (ix* constants) to the old value for the item.  -->
+      <dictInt name="changes" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="Rsp_GetOptionsForItemTypes">
+      <dictInt name="typeIDs" />
+  </elementDef>
+
+  <elementDef name="Rsp_GetOptionsForItemTypes_Arg">
+    <objectInline>
+        <stringInline value="util.KeyVal" />
+          <dictInline>
+              <dictInlineEntry key="isRecyclable">
+                  <bool name="isRecyclable" />
+              </dictInlineEntry>
+              <dictInlineEntry key="isRefinable">
+                  <bool name="isRefinable" />
+              </dictInlineEntry>
+          </dictInline>
+    </objectInline>
+  </elementDef>
+
+</elements>
+
+

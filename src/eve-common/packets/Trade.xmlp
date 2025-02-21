@@ -1,0 +1,70 @@
+<elements>
+  <elementDef name="InitiateTradeRsp_NoCash">
+    <objectInline>
+      <stringInline value="util.Moniker" />
+      <tupleInline>
+        <stringInline value="trademgr" />
+        <int name ="nodeID" />
+        <tupleInline>
+          <int name="stationID" />
+          <tupleInline>
+            <int name="myID" />
+            <int name="herID" />
+          </tupleInline>
+          <int name="money" none_marker="0" />
+          <int name="state" none_marker="0" />
+          <long name="when" none_marker="0" />
+        </tupleInline>
+        <int name="unk2" none_marker="0" />
+      </tupleInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="Trade_BindArgs">
+    <tupleInline>
+      <int name="stationID" />
+      <tupleInline>
+        <int name="myID" />
+        <int name="herID" />
+      </tupleInline>
+      <real name="myMoney" none_marker="0" />
+      <real name="herMoney" none_marker="0" />
+      <long name="fileTime" none_marker="0" />
+    </tupleInline>
+  </elementDef>
+
+  <elementDef name="TradeListRsp">
+    <objectInline>
+      <stringInline value="util.Row" />
+      <dictInline>
+        <dictInlineEntry key="header">
+          <list name="header" />
+        </dictInlineEntry>
+        <dictInlineEntry key="line">
+          <list name="line" />
+        </dictInlineEntry>
+      </dictInline>
+    </objectInline>
+  </elementDef>
+
+  <elementDef name="TradeListData">
+    <listInline>
+      <long name="tradeContainerID" />
+      <listInline>
+        <int name="myID" />
+        <int name="herID" />
+      </listInline>
+      <listInline>
+        <bool name="myState" default="0" />
+        <bool name="herState" default="0" />
+      </listInline>
+      <listInline>
+        <real name="myMoney" default="0" />
+        <real name="herMoney" default="0" />
+      </listInline>
+      <objectEx name="list" type="PyObjectEx" />
+    </listInline>
+  </elementDef>
+
+</elements>
+
