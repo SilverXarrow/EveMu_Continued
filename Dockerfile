@@ -32,11 +32,11 @@ LABEL description="EVEmu Server"
 # copy our utils to this image
 COPY --from=app-build /src/utils/ /src/utils
 # add in the files to load the database
-ADD /sql/ /src/sql
+ADD /sql/ /sql
 # copy our compiled code to this image
 COPY --from=app-build /app/ /app
 
-RUN cd /src/sql && ./get_evedbtool.sh
+RUN cd /sql && ./get_evedbtool.sh
 
 # Expose the port the server is on.
 EXPOSE 26000
