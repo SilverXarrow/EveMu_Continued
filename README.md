@@ -14,7 +14,7 @@ Additional details on the SDK is [available on the wiki](https://wiki.evemu.dev/
 ## `docker-compose` Quickstart
  EVEmu can be run with Docker Compose:
 ```
-git clone https://github.com/EvEmu-Project/evemu_Crucible.git
+git clone https://github.com/SilverXarrow/EveMu_Continued.git
 cd evemu_Crucible
 docker-compose -p evemu up --build -d
 ```
