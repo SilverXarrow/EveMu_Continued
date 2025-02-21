@@ -1,4 +1,4 @@
-# [EVEmu](https://evemu.dev) - An EVE Online Emulator
+# EveMu - An EVE Online Emulator
 
 ## Introduction
 EVEmu is a work-in-progress server emulator for the space MMO EVE Online. This is a private continuation for experimentation and internal server running.
